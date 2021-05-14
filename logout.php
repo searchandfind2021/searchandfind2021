@@ -2,5 +2,5 @@
 session_start();
 session_unset();
 session_destroy();
-header('Location: /S&F');
+header('Location: /pruebaSandF/index.php');
 ?>

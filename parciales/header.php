@@ -1,3 +1,3 @@
 <header>
-    <a href="/S&F">Search&Find</a>
+    <a href="/pruebaSandF/index.php">Search&Find</a>
 </header>

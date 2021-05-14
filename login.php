@@ -2,7 +2,7 @@
   session_start();
 
   if (isset($_SESSION['user_id'])) {
-    header('Location: /S&F');
+    header('Location: /pruebaSandF/index.php');
   }
   require 'database.php';
 
@@ -16,7 +16,7 @@
 
     if (count($results) > 0 && password_verify($_POST['password'], $results['password'])) {
       $_SESSION['user_id'] = $results['id'];
-      header("Location: /S&F");
+      header("Location: /pruebaSandF/index.php");
     } else {
       $message = 'Sorry, those credentials do not match';
     }
@@ -40,7 +40,7 @@
     <?php endif; ?>
 
     <h1>Login</h1>
-    <span>or <a href="resgister.php">Register</a></span>
+    <span>or <a href="register.php">Register</a></span>
 
     <form action="login.php" method="POST">
       <input name="email" type="text" placeholder="Enter your email">
