@@ -20,15 +20,12 @@
             <form action="login.php" method="POST">
                 <input type="submit" value="PublicaGratis">
                 <input type="submit" value="Inicia Sesion">
-            </form>    
-
         <?php endif; ?>
     </body>
 </html>
 <?php 
 session_start();
 require 'database.php';
-
 
 $con->consulta("SELECT * FROM apartment");
 while ($fila = $con->extraer_registro()) {

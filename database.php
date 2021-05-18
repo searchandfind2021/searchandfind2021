@@ -54,7 +54,7 @@ $database='s&f-database';
 
 
 $con = new searchandfind($server, $username, $password, $database, $port, $socket);
-$conn=new PDO("mysql:host=$server;dbname=$database;", $username, $password);
+$conn = new PDO("mysql:host=$server;dbname=$database;", $username, $password);
 
 
 
