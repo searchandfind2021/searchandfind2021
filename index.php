@@ -1,3 +1,22 @@
+<?php
+session_start();
+require 'database.php';
+
+if(isset($_SESSION['user_id'])){
+    $records = $conn->prepare('SELECT id, email, password FROM users WHERE id = :id');
+    $records->bindParam(':id', $_SESSION['user_id']);
+    $records->execute();
+    $results = $records->fetch(PDO::FETCH_ASSOC);
+    
+    $user = null;
+    
+    if(count($results) > 0){
+    $user = $results;
+    }
+    
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,15 +36,20 @@
         <br>Welcome. <?= $user['email']; ?>
         <br>You are Succesfully Logged In<a href='logout.php'>Logout</a>
         <?php else: ?>
-            <form action="login.php" method="POST">
-                <input type="submit" value="PublicaGratis">
-                <input type="submit" value="Inicia Sesion">
+            <a href="update.php"><input type="submit" value="PublicaGratis"></a>
+                
+                    
+          
+                <a href="login.php">
+                    <input type="submit" value="Inicia Sesion"></a> 
+
         <?php endif; ?>
     </body>
 </html>
+
+
+
 <?php 
-session_start();
-require 'database.php';
 
 $con->consulta("SELECT * FROM apartment");
 while ($fila = $con->extraer_registro()) {
@@ -38,17 +62,5 @@ while ($fila = $con->extraer_registro()) {
     }
 }
 
-if(isset($_SESSION['user_id'])){
-$records = $conn->prepare('SELECT id, email, password FROM users WHERE id = :id');
-$records->bindParam(':id', $_SESSION['user_id']);
-$records->execute();
-$results = $records->fetch(PDO::FETCH_ASSOC);
 
-$user = null;
-
-if(count($results) > 0){
-$user = $results;
-}
-
-}
 ?>
