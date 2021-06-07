@@ -194,11 +194,11 @@ select[name="price"] {
          
         <select name='price' id='location' placeholder='search by price' >
                         <option value='0'>All prices</option>
-						<option value='200'>hasta 200€</option>
-						<option value='300'>entre 300€ y 500€</option>
-						<option value='500'>entre 500€ y 700€</option>
-						<option value='700'>entre 700€ y 1000€</option>
-						<option value='1000'>mas de 1000€</option>
+						<option value='200'>up to 200€</option>
+						<option value='300'>between 300€ and 500€</option>
+						<option value='500'>between 500€ and 700€</option>
+						<option value='700'>between 700€ and 1000€</option>
+						<option value='1000'>more than 1000€</option>
 		</select>
         <input type="submit" value="Find" name='Find'>
         </form>    
@@ -215,18 +215,18 @@ select[name="price"] {
             <!--<input type='number' name='price' id='price' placeholder='search by price'>-->
             
             <select name='price' id='price' placeholder='search by price' value='search by price'>
-                        <option value='0'>Search by price</option>
-						<option value='200'>hasta 200€</option>
-						<option value='300'>entre 300€ y 500€</option>
-						<option value='500'>entre 500€ y 700€</option>
-						<option value='700'>entre 700€ y 1000€</option>
-						<option value='1000'>mas de 1000€</option>
+                        <option value='0'>All prices</option>
+						<option value='200'>up to 200€</option>
+						<option value='300'>between 300€ and 500€</option>
+						<option value='500-700'>between 500€ and 700€</option>
+						<option value='700'>between 700€ and 1000€</option>
+						<option value='1000'>more than 1000€</option>
 			</select>
             <input type="submit" value="Find" name='Find'>
              </form>       
 
         <?php endif; ?>
-        <?php 
+        <?php     
         if(!isset($_POST['Find'])){
                 $con->consulta("SELECT image, info,description,price,location,email FROM apartment");
             while ($fila = $con->extraer_registro()) {
@@ -247,105 +247,207 @@ select[name="price"] {
             $price = $_POST['price'];
             $location = $_POST['location'];
 
-            if ($price == 0) {
-                $con->consulta("SELECT image, info,description,price,location,email FROM apartment WHERE location = '$location'");
-                while ($fila = $con->extraer_registro()) {
-                    /*echo"<div id='ficha'>"; */
-                    echo"<TABLE>
-                    <TR>
-                    <TD>";
-                    foreach ($fila as $key => $valor)  {
-                        echo "<div id='texto'>$valor</div>";  
-                    if ($key == 'image' ) {  
-                        echo "<img src='$valor'>";
-                        }  
-                    }echo"<a href='contacto.php'><input type='submit' value='Contact'></a></TD><br><br>
-                    </TR> 
-                    </TABLE>"; 
+            /* Si la locaclizacion es vacía */
+            if(empty($location)){
+                if ($price == 0) {
+                    $con->consulta("SELECT image, info,description,price,location,email FROM apartment");
+                    while ($fila = $con->extraer_registro()) {
+                        /*echo"<div id='ficha'>"; */
+                        echo"<TABLE>
+                        <TR>
+                        <TD>";
+                        foreach ($fila as $key => $valor)  {
+                            echo "<div id='texto'>$valor</div>";  
+                        if ($key == 'image' ) {  
+                            echo "<img src='$valor'>";
+                            }  
+                        }echo"<a href='contacto.php'><input type='submit' value='Contact'></a></TD><br><br>
+                        </TR> 
+                        </TABLE>"; 
+                    }
+                } elseif ($price  == 200) {
+                    $con->consulta("SELECT image, info,description,price,location,email FROM apartment WHERE price <= '$price'");
+                    while ($fila = $con->extraer_registro()) {
+                        /*echo"<div id='ficha'>"; */
+                        echo"<TABLE>
+                        <TR>
+                        <TD>";
+                        foreach ($fila as $key => $valor)  {
+                            echo "<div id='texto'>$valor</div>";  
+                        if ($key == 'image' ) {  
+                            echo "<img src='$valor'>";
+                            }  
+                        }echo"<a href='contacto.php'><input type='submit' value='Contact'></a></TD><br><br>
+                        </TR> 
+                        </TABLE>"; 
+                    }
+                } elseif ($price  == 300) {    
+                    $con->consulta("SELECT image, info,description,price,location,email FROM apartment WHERE price BETWEEN '$price' AND 500 ");
+                    while ($fila = $con->extraer_registro()) {
+                        /*echo"<div id='ficha'>"; */
+                        echo"<TABLE>
+                        <TR>
+                        <TD>";
+                        foreach ($fila as $key => $valor)  {
+                            echo "<div id='texto'>$valor</div>";  
+                        if ($key == 'image' ) {  
+                            echo "<img src='$valor'>";
+                            }  
+                        }echo"<a href='contacto.php'><input type='submit' value='Contact'></a></TD><br><br>
+                        </TR> 
+                        </TABLE>"; 
+                    }
+                } elseif ($price  == 500) {
+                    $con->consulta("SELECT image, info,description,price,location,email FROM apartment WHERE price BETWEEN '$price' AND 700 ");
+                    while ($fila = $con->extraer_registro()) {
+                        /*echo"<div id='ficha'>"; */
+                        echo"<TABLE>
+                        <TR>
+                        <TD>";
+                        foreach ($fila as $key => $valor)  {
+                            echo "<div id='texto'>$valor</div>";  
+                        if ($key == 'image' ) {  
+                            echo "<img src='$valor'>";
+                            }  
+                        }echo"<a href='contacto.php'><input type='submit' value='Contact'></a></TD><br><br>
+                        </TR> 
+                        </TABLE>"; 
+                    }
+                } elseif ($price  == 700) {
+                    $con->consulta("SELECT image, info,description,price,location,email FROM apartment WHERE price BETWEEN '$price' AND 1000 ");
+                    while ($fila = $con->extraer_registro()) {
+                        /*echo"<div id='ficha'>"; */
+                        echo"<TABLE>
+                        <TR>
+                        <TD>";
+                        foreach ($fila as $key => $valor)  {
+                            echo "<div id='texto'>$valor</div>";  
+                        if ($key == 'image' ) {  
+                            echo "<img src='$valor'>";
+                            }  
+                        }echo"<a href='contacto.php'><input type='submit' value='Contact'></a></TD><br><br>
+                        </TR> 
+                        </TABLE>"; 
+                    }
+                } elseif ($price  == 1000) {
+        
+                    $con->consulta("SELECT image, info,description,price,location,email FROM apartment WHERE price >= '$price'");
+                    while ($fila = $con->extraer_registro()) {
+                        /*echo"<div id='ficha'>"; */
+                        echo"<TABLE>
+                        <TR>
+                        <TD>";
+                        foreach ($fila as $key => $valor)  {
+                            echo "<div id='texto'>$valor</div>";  
+                        if ($key == 'image' ) {  
+                            echo "<img src='$valor'>";
+                            }  
+                        }echo"<a href='contacto.php'><input type='submit' value='Contact'></a></TD><br><br>
+                        </TR> 
+                        </TABLE>"; 
+                    }
                 }
-            } elseif ($price  == 200) {
-                $con->consulta("SELECT image, info,description,price,location,email FROM apartment WHERE price <= '$price' AND location = '$location'");
-                while ($fila = $con->extraer_registro()) {
-                    /*echo"<div id='ficha'>"; */
-                    echo"<TABLE>
-                    <TR>
-                    <TD>";
-                    foreach ($fila as $key => $valor)  {
-                        echo "<div id='texto'>$valor</div>";  
-                    if ($key == 'image' ) {  
-                        echo "<img src='$valor'>";
-                        }  
-                    }echo"<a href='contacto.php'><input type='submit' value='Contact'></a></TD><br><br>
-                    </TR> 
-                    </TABLE>"; 
-                }
-            } elseif ($price  == 300) {    
-                $con->consulta("SELECT image, info,description,price,location,email FROM apartment WHERE price BETWEEN '$price' AND 500 AND  location = '$location' ");
-                while ($fila = $con->extraer_registro()) {
-                    /*echo"<div id='ficha'>"; */
-                    echo"<TABLE>
-                    <TR>
-                    <TD>";
-                    foreach ($fila as $key => $valor)  {
-                        echo "<div id='texto'>$valor</div>";  
-                    if ($key == 'image' ) {  
-                        echo "<img src='$valor'>";
-                        }  
-                    }echo"<a href='contacto.php'><input type='submit' value='Contact'></a></TD><br><br>
-                    </TR> 
-                    </TABLE>"; 
-                }
-            } elseif ($price  == 500) {
-                $con->consulta("SELECT image, info,description,price,location,email FROM apartment WHERE price BETWEEN '$price' AND 700 AND  location = '$location' ");
-                while ($fila = $con->extraer_registro()) {
-                    /*echo"<div id='ficha'>"; */
-                    echo"<TABLE>
-                    <TR>
-                    <TD>";
-                    foreach ($fila as $key => $valor)  {
-                        echo "<div id='texto'>$valor</div>";  
-                    if ($key == 'image' ) {  
-                        echo "<img src='$valor'>";
-                        }  
-                    }echo"<a href='contacto.php'><input type='submit' value='Contact'></a></TD><br><br>
-                    </TR> 
-                    </TABLE>"; 
-                }
-            } elseif ($price  == 700) {
-                $con->consulta("SELECT image, info,description,price,location,email FROM apartment WHERE price BETWEEN '$price' AND 1000 AND  location = '$location' ");
-                while ($fila = $con->extraer_registro()) {
-                    /*echo"<div id='ficha'>"; */
-                    echo"<TABLE>
-                    <TR>
-                    <TD>";
-                    foreach ($fila as $key => $valor)  {
-                        echo "<div id='texto'>$valor</div>";  
-                    if ($key == 'image' ) {  
-                        echo "<img src='$valor'>";
-                        }  
-                    }echo"<a href='contacto.php'><input type='submit' value='Contact'></a></TD><br><br>
-                    </TR> 
-                    </TABLE>"; 
-                }
-            } elseif ($price  == 1000) {
-    
-                $con->consulta("SELECT image, info,description,price,location,email FROM apartment WHERE price >= '$price' AND location = '$location'");
-                while ($fila = $con->extraer_registro()) {
-                    /*echo"<div id='ficha'>"; */
-                    echo"<TABLE>
-                    <TR>
-                    <TD>";
-                    foreach ($fila as $key => $valor)  {
-                        echo "<div id='texto'>$valor</div>";  
-                    if ($key == 'image' ) {  
-                        echo "<img src='$valor'>";
-                        }  
-                    }echo"<a href='contacto.php'><input type='submit' value='Contact'></a></TD><br><br>
-                    </TR> 
-                    </TABLE>"; 
+            /* Si la localizacion y el rango de precio estan cumplimentados */
+            } else {
+                if ($price == 0) {
+                    $con->consulta("SELECT image, info,description,price,location,email FROM apartment WHERE location = '$location'");
+                    while ($fila = $con->extraer_registro()) {
+                        /*echo"<div id='ficha'>"; */
+                        echo"<TABLE>
+                        <TR>
+                        <TD>";
+                        foreach ($fila as $key => $valor)  {
+                            echo "<div id='texto'>$valor</div>";  
+                        if ($key == 'image' ) {  
+                            echo "<img src='$valor'>";
+                            }  
+                        }echo"<a href='contacto.php'><input type='submit' value='Contact'></a></TD><br><br>
+                        </TR> 
+                        </TABLE>"; 
+                    }
+                } elseif ($price  == 200) {
+                    $con->consulta("SELECT image, info,description,price,location,email FROM apartment WHERE price <= '$price' AND location = '$location'");
+                    while ($fila = $con->extraer_registro()) {
+                        /*echo"<div id='ficha'>"; */
+                        echo"<TABLE>
+                        <TR>
+                        <TD>";
+                        foreach ($fila as $key => $valor)  {
+                            echo "<div id='texto'>$valor</div>";  
+                        if ($key == 'image' ) {  
+                            echo "<img src='$valor'>";
+                            }  
+                        }echo"<a href='contacto.php'><input type='submit' value='Contact'></a></TD><br><br>
+                        </TR> 
+                        </TABLE>"; 
+                    }
+                } elseif ($price  == 300) {    
+                    $con->consulta("SELECT image, info,description,price,location,email FROM apartment WHERE price BETWEEN '$price' AND 500 AND  location = '$location' ");
+                    while ($fila = $con->extraer_registro()) {
+                        /*echo"<div id='ficha'>"; */
+                        echo"<TABLE>
+                        <TR>
+                        <TD>";
+                        foreach ($fila as $key => $valor)  {
+                            echo "<div id='texto'>$valor</div>";  
+                        if ($key == 'image' ) {  
+                            echo "<img src='$valor'>";
+                            }  
+                        }echo"<a href='contacto.php'><input type='submit' value='Contact'></a></TD><br><br>
+                        </TR> 
+                        </TABLE>"; 
+                    }
+                } elseif ($price  == 500) {
+                    $con->consulta("SELECT image, info,description,price,location,email FROM apartment WHERE price BETWEEN '$price' AND 700 AND  location = '$location' ");
+                    while ($fila = $con->extraer_registro()) {
+                        /*echo"<div id='ficha'>"; */
+                        echo"<TABLE>
+                        <TR>
+                        <TD>";
+                        foreach ($fila as $key => $valor)  {
+                            echo "<div id='texto'>$valor</div>";  
+                        if ($key == 'image' ) {  
+                            echo "<img src='$valor'>";
+                            }  
+                        }echo"<a href='contacto.php'><input type='submit' value='Contact'></a></TD><br><br>
+                        </TR> 
+                        </TABLE>"; 
+                    }
+                } elseif ($price  == 700) {
+                    $con->consulta("SELECT image, info,description,price,location,email FROM apartment WHERE price BETWEEN '$price' AND 1000 AND  location = '$location' ");
+                    while ($fila = $con->extraer_registro()) {
+                        /*echo"<div id='ficha'>"; */
+                        echo"<TABLE>
+                        <TR>
+                        <TD>";
+                        foreach ($fila as $key => $valor)  {
+                            echo "<div id='texto'>$valor</div>";  
+                        if ($key == 'image' ) {  
+                            echo "<img src='$valor'>";
+                            }  
+                        }echo"<a href='contacto.php'><input type='submit' value='Contact'></a></TD><br><br>
+                        </TR> 
+                        </TABLE>"; 
+                    }
+                } elseif ($price  == 1000) {
+        
+                    $con->consulta("SELECT image, info,description,price,location,email FROM apartment WHERE price >= '$price' AND location = '$location'");
+                    while ($fila = $con->extraer_registro()) {
+                        /*echo"<div id='ficha'>"; */
+                        echo"<TABLE>
+                        <TR>
+                        <TD>";
+                        foreach ($fila as $key => $valor)  {
+                            echo "<div id='texto'>$valor</div>";  
+                        if ($key == 'image' ) {  
+                            echo "<img src='$valor'>";
+                            }  
+                        }echo"<a href='contacto.php'><input type='submit' value='Contact'></a></TD><br><br>
+                        </TR> 
+                        </TABLE>"; 
+                    }
                 }
             }
-        
         }
         ?>
         </div>
