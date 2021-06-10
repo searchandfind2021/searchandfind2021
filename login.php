@@ -68,7 +68,7 @@ input[value="Send"] {
     padding: 10px;
     color: #fff;
     background: #FB960C ;
-    width: 320px;
+    width: 180px;
     margin: 200px auto;
     border: 0;
     border-radius: 3px;
