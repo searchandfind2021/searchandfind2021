@@ -21,16 +21,17 @@ body {
     background-repeat: no-repeat;
 }
 #texto{
-    width:55%;
+    width:40%;
     padding:4px;
     margin-left:50px;
     text-align: left; 
     
 }
 img{
-    height:200px;
-    width:300px;
-    margin-right:40px;
+    height:250px;
+    width:400px;
+    margin-right:30px;
+    margin-bottom:30px;
     float:right;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
     border: 1px solid white; 
@@ -39,15 +40,18 @@ img{
 
 }
 table{
-    background: linear-gradient(-90deg, #923C04 , #FDDEBC);
-    background-color:#FDDEBC ;
+    background-image:url(fondo-abstracto-suave-acuarela_1055-8407.jpg);
+    background-color:white;
     width: 80%;
-    height: 320px;
+    height: 40  0px;
     margin: 0 auto;
-    margin-top:40px;
+    margin-top:10px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
-    padding:5px;
+    padding:10px;
+    border:2px solid white; 
+    background-repeat: cover;
+    background-repeat: no-repeat;
 }
 #logo{
     background-image:url(logoSearch.pdf);
@@ -121,6 +125,8 @@ input[name="Delete"]:hover {
    
 
         $con->consulta("SELECT id, image, info,description,price,location,email FROM apartment WHERE idusers = '$idusers'");
+
+        //echo "registered publication"; 
   
    while ($fila = $con->extraer_registro()) {
        /*echo"<div id='ficha'>"; */
@@ -135,22 +141,28 @@ input[name="Delete"]:hover {
             if ($key == 'id' ) {  
                 $id = $valor;
             }
+           
+            
        }
-       echo "
-                           <form method='POST'>
-                           <br>
-                           <input type='submit' value='Edit' name='Edit'>
-                           <input type='submit' value='Delete' name='Delete'>
-                           </TD><br><br>
-                           </TR> 
-                           </TABLE>";
+        echo "
+        <form method='POST'><br>
+        <input type='submit' value='Delete' name='Delete'>
+        </TD><br><br>
+        </TR> 
+        </TABLE>
+        </form>";
+        
+             
    }
+
+   
+
+   //El problema de que no borra el anuncio seleccionado es cuando ponemos estos dos if fuera del while, si los ponemos dentro si lo hace pero nos salta el erro de maysqli_fetch_array
 
    if(empty($id)){
     echo "<h2 style='color:#FDF9F6 ; text-shadow: 1px 0 5px rgba(0, 0, 0, 1); '>You don't have any posts right now. Please go to post for free</h2>";
     
-}
-   if(isset($_POST['Delete'])){
+    }if(isset($_POST['Delete'])){
     if(empty($id)){
         echo "";
     }else{
@@ -158,5 +170,5 @@ input[name="Delete"]:hover {
         $con->consulta("DELETE FROM apartment WHERE idusers = '$idusers' AND id = '$id'");
     } 
    }
-
+        
    ?>

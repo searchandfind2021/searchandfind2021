@@ -4,7 +4,7 @@
 
     $message ='';
 
-    if(!empty($_POST['email']) && !empty($_POST['password'])){
+    if(!empty($_POST['email']) && (!empty($_POST['password']) && (!empty($_POST['confirm_password']) && ($_POST['password']) == ($_POST['confirm_password'])))){
         $sql = "INSERT INTO users (email, password) VALUES (:email, :password)";
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(':email', $_POST['email']);
@@ -13,10 +13,13 @@
 
         if($stmt->execute()){
             $message='Succesfully created new user';
-        }else{
+        }elseif(!$stmt->execute()){
+            $message='Sorry there must have been an issues creating your account ';
+        }elseif($_POST['password'] != $_POST['confirm_password']){
             $message='Sorry there must have been an issues creating your account ';
         }
     }
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">

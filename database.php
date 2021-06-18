@@ -50,7 +50,7 @@ $port = 3306;
 $socket = "";
 $username='root';
 $password='';
-$database='s&f-database';
+$database='s&fdatabase';
 
 
 $con = new searchandfind($server, $username, $password, $database, $port, $socket);

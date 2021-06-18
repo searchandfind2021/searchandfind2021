@@ -49,16 +49,17 @@ border: 1px solid black;
 }*/
 
 #texto{
-    width:55%;
+    width:40%;
     padding:4px;
     margin-left:50px;
     text-align: left; 
     
 }
 img{
-    height:200px;
-    width:300px;
-    margin-right:40px;
+    height:250px;
+    width:400px;
+    margin-right:30px;
+    margin-bottom:30px;
     float:right;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
     border: 1px solid white; 
@@ -135,14 +136,30 @@ input[value="Contact"] {
 }
 
 table{
-    background: linear-gradient(-90deg, #923C04 , #FDDEBC);
-    background-color:#FDDEBC ;
+    background-image:url(fondo-abstracto-suave-acuarela_1055-8407.jpg);
+    background-color:white;
     width: 80%;
-    height: 300px;
+    height: 40  0px;
     margin: 0 auto;
     margin-top:10px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+    padding:10px;
+    border:2px solid white; 
+    background-repeat: cover;
+    background-repeat: no-repeat;
+}
+
+.table1{
+    background-color:#BFBBBA  ;
+    width: 60%;
+    height: 100px;
+    margin: 0 auto;
+    margin-top:10px;
+    padding:20px;
+    background-repeat: cover;
+    background-repeat: no-repeat;
+    border:1px solid black;
 }
 #logo{
     background-image:url(logoSearch.pdf);
@@ -198,7 +215,7 @@ input[value="Profile"] {
         <?php
         if(!empty($user)):
         ?>
-                <div class="headerLog">                
+                <div class="headerLog">              
                         <a href="update.php"><input type="submit" value="Publish for Free"></a>
                 </div>
         <form method='POST'>
@@ -216,12 +233,17 @@ input[value="Profile"] {
 		</select>
         <input type="submit" value="Find" name='Find'>
         </form> 
+        <div class=table1> 
+                <TR>
+                <TD>
                 <div class="header">
                         <a href="profile.php"><input type="submit" value="Profile"></a>
-                </div>    
+                </div>   
         <br>Welcome. <?= $user['email']; ?>
-        <br>You are Succesfully Logged In<a href='logout.php'>Logout</a>
-         
+        <br>You are Succesfully Logged In <a href='logout.php'>Logout</a>
+        </TR>
+                </TD>
+        </div> 
         <?php else: ?>
             <div class="headerLog">
                 <a href="login.php">

@@ -68,10 +68,10 @@ input[value="Send"] {
             <input id="description" type="text" name="description" placeholder="Enter your description" required=""/><br>
             <input id="location" type="text" name="location" placeholder="Enter your location" required="" /><br>           
             <input id="name" type="text" name="name" placeholder="Enter your name" required="" /><br>
-            <input id="email" type="text" name="email" placeholder="prueba@.mail.com" required="" /><br>
+            <input id="email" type="text" name="email" placeholder="Enter your email" required="" /><br>
             <input id="phone" type="number" name="phone" placeholder="Enter your phone" required="" /><br>
             <input type="file" name="image" accept=".pdf,.jpg,.png" multiple/><br>
-            <input id="submit" type="submit" name="Send" value="Send" />
+            
 
             <?php
     /* Llamada a la base de datos */
@@ -104,13 +104,15 @@ input[value="Send"] {
             $email = $_POST['email'];
             $phone = $_POST['phone'];
 
-
-
             $con->consulta("INSERT INTO apartment (image, info, description, price, location,name, email, phone, idusers) VALUES ('$image','$info','$description','$price', '$location', '$name', '$email', '$phone', '$idusers')");
-
+            echo "<br>";
+            echo "<br>";
+            echo "<p style=magin: 'auto 0'>Successfully Published Apartment!</p>";
         }
 
     ?>
+
+<input id="submit" type="submit" name="Send" value="Send" />
     </form>
     </section>
     </div>
